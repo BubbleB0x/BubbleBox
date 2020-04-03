@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <div align="center">
+      <img src="assets/logos/BubbleBox-logo/vector/isolated-monochrome-white.svg" class="bb" width="50">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle style="text-align: center;">Safe & Sound</ion-card-subtitle>
+      <ion-card-title style="text-align: center;">BubbleBox</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="position: relative; bottom: 20;">
+      <div id="container">
+        <ion-item>
+          <ion-label position="floating">
+            <ion-icon name="mail-outline"></ion-icon> Mail
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">
+            <ion-icon name="key-outline"></ion-icon> Password
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <hr>
+        <hr>
+        <ion-button expand="block">
+          Log in
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+        <hr>
+        <ion-button fill="outline">
+          Forgot Password?
+        </ion-button>
+        <hr>
+        <p>Don't have an account? <a>Sign up</a> .</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
