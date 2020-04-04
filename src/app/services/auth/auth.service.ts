@@ -12,16 +12,23 @@ const { Storage } = Plugins;
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(cred) {
-    return this.http.post<ApiKey>(environment.apiUrl + '_security/api_key', {
-      "name": "my-api-key"
-    }, {
+    return this.http.get(environment.apiUrlLocal, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(cred.username + ':' + cred.password)
       })
     })
+  }
+
+  async logout() {
+    await Storage.clear().then(res => {
+      this.router.navigate(['/login']);
+    }, err => {
+      console.log('failed clean storage');
+    });
+    
   }
 }

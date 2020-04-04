@@ -24,9 +24,21 @@ export class LoginPage implements OnInit {
   login() {
     this.authService.login(this.loginForm.value).subscribe(
 
-      (response) => {
+      async (response) => {
 
+/* ------- Implementazione per la basic Auth -------*/
 
+        await Storage.set({
+          key: 'username',
+          value: this.loginForm.value.username
+        });
+
+        await Storage.set({
+          key: 'reqBasicKey',
+          value: btoa(this.loginForm.value.username + ':' + this.loginForm.value.password)
+        });
+
+/* -------- Implementazione per le ApiKeys ----------------
         Storage.set({
           key: 'apiKey',
           value: response.api_key
@@ -46,7 +58,7 @@ export class LoginPage implements OnInit {
           key: 'reqKey',
           value: btoa(response.id + ':' + response.name)
         });
-
+ --------------------------------------------------------*/
         this.loginForm.reset();
         this.router.navigate(['/home']);
       },

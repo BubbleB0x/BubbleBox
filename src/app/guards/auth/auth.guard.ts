@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+  constructor(private router: Router) { }
+
+  async canActivate() {
+    const reqKey = await Storage.get({ key: 'reqBasicKey' });
+    console.log(reqKey);
+    if (reqKey.value === null) {
+      this.router.navigate(['/login'])
+    }
     return true;
   }
-  
+
 }
