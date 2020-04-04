@@ -11,6 +11,7 @@ import { AuthService } from './services/auth/auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  listIndex = null;
   
   constructor(
     private platform: Platform,
@@ -29,5 +30,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  selectItem(index) {
+    this.listIndex = index;
   }
 }
