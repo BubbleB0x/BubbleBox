@@ -6,9 +6,7 @@
   "webDir": "www",
   "cordova": {},
   "server": {
-    "url": "http://10.0.0.111:8101",
-    "cleartext": true,
-    "originalUrl": "http://localhost:8100",
-    "originalCleartext": true
+    "url": "http://10.0.0.111:8100",
+    "cleartext": true
   }
 }
