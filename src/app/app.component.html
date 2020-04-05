@@ -6,7 +6,7 @@
           <ion-list-header>Inbox</ion-list-header>
           <ion-note>hi@ionicframework.com</ion-note>
 
-          <ion-menu-toggle auto-hide="false">
+          <ion-menu-toggle auto-hide="false" (mouseleave)="selectItem(null)">
             <ion-item (mouseenter)="selectItem(0)" (mouseleave)="selectItem(null)" routerDirection="root" lines="none" detail="false" [class.selected]="listIndex === 0">
               <ion-icon slot="start" name="home-outline"></ion-icon>
               <ion-label>Home</ion-label>

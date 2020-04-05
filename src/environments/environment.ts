@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://952ebb09257c4e07b22bdbc6457bf14b.europe-west3.gcp.cloud.es.io:9243/",
-  apiUrlLocal: "http://10.0.0.49:9200/"
+  apiUrlES: "https://952ebb09257c4e07b22bdbc6457bf14b.europe-west3.gcp.cloud.es.io:9243/",
+  apiUrlLocal: "http://10.0.0.73:9200/",
+  apiUrl: "http://37.77.97.144:9200/"
 };
 
 /*

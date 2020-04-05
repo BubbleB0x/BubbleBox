@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { Plugins } from '@capacitor/core';
-import { ApiKey } from 'src/app/interfaces/apiKey/api-key';
 import { Router } from '@angular/router';
 const { Storage } = Plugins;
 
@@ -15,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(cred) {
-    return this.http.get(environment.apiUrlLocal, {
+    return this.http.get(environment.apiUrl, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(cred.username + ':' + cred.password)

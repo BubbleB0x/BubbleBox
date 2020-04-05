@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
 
   async canActivate() {
     const reqKey = await Storage.get({ key: 'reqBasicKey' });
-    console.log(reqKey);
     if (reqKey.value === null) {
       this.router.navigate(['/login'])
     }
