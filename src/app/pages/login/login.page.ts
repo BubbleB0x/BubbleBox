@@ -5,6 +5,8 @@ import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { async } from '@angular/core/testing';
 import { ToastController } from '@ionic/angular';
+import { AccessToken } from '../../interfaces/apiKey/access_token';
+import { stringify } from 'querystring';
 const { Storage } = Plugins;
 @Component({
   selector: 'app-login',
@@ -12,6 +14,7 @@ const { Storage } = Plugins;
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  err;
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
@@ -32,47 +35,23 @@ export class LoginPage implements OnInit {
       this.LoginErrorToast("Please enter Username and Password");
     } else {
       this.authService.login(this.loginForm.value).subscribe(
-        async () => {
-          /* ------- Implementazione per la basic Auth -------*/
-  
+        async (result: AccessToken) => {
+
+          // Memorizzo l'access token nello store per la persistenza
           await Storage.set({
-            key: 'username',
-            value: this.loginForm.value.username
+            key: 'access_token',
+            value: result.access_token
           });
   
-          await Storage.set({
-            key: 'reqBasicKey',
-            value: btoa(this.loginForm.value.username + ':' + this.loginForm.value.password)
-          });
-  
-          /* -------- Implementazione per le ApiKeys ----------------
-                  Storage.set({
-                    key: 'apiKey',
-                    value: response.api_key
-                  });
-          
-                  Storage.set({
-                    key: 'name',
-                    value: response.name
-                  });
-          
-                  Storage.set({
-                    key: 'id',
-                    value: response.id
-                  });
-          
-                  Storage.set({
-                    key: 'reqKey',
-                    value: btoa(response.id + ':' + response.name)
-                  });
-           --------------------------------------------------------*/
           // Faccio la pulizia dei campi della form di login
           this.loginForm.reset();
+
           // Reindirizzo alla home
           this.router.navigate(['/home']);
         }, (error) => {
-          this.LoginErrorToast(error.error.error.reason);
-          console.log(error);
+          this.err = stringify(error)
+
+          this.LoginErrorToast(error.error.error);
         }
       );
     }
