@@ -14,9 +14,8 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(cred) {
-    return this.http.get(environment.apiUrl, {
+    return this.http.post(environment.apiUrlLocal + '/login', { }, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(cred.username + ':' + cred.password)
       })
     })
