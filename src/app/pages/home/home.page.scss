@@ -42,15 +42,43 @@ svg {
   width: 50px;
   margin-top: 8px;
 }
+
 path {
-  stroke: var(--ion-color-primary);
   stroke-width: 2px;
   fill: none;
   stroke-dasharray: 630, 500;
   stroke-dashoffset: 0;
+}
+
+.primary {
   animation: pulse 3s infinite linear;
+  stroke: var(--ion-color-primary);
   &:nth-child(1) {
     stroke: var(--ion-color-primary);
+  }
+}
+
+.tertiary {
+  animation: pulse 2.5s infinite linear;
+  stroke: var(--ion-color-tertiary);
+  &:nth-child(1) {
+    stroke: var(--ion-color-tertiary);
+  }
+}
+
+.warning {
+  animation: pulse 2s infinite linear;
+  stroke: var(--ion-color-warning);
+  &:nth-child(1) {
+    stroke: var(--ion-color-warning);
+  }
+}
+
+.danger {
+  animation: pulse 1s infinite linear;
+  stroke: var(--ion-color-danger);
+  &:nth-child(1) {
+    stroke: var(--ion-color-danger);
   }
 }
 
