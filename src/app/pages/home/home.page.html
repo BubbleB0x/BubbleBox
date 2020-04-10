@@ -4,7 +4,8 @@
       <ion-menu-button [color]="color[hsIndex]"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-chip [color]="color[hsIndex]" size="large">
+      <ion-spinner (click)="refreshState()" name="dots" *ngIf="hsIndex == 5" color="primary" style="margin-right: 15px;"></ion-spinner>
+      <ion-chip [color]="color[hsIndex]" size="large" (click)="refreshState()" *ngIf="hsIndex != 5">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" viewBox="0 0 100 300">
         <path [ngClass]="color[hsIndex]" d="

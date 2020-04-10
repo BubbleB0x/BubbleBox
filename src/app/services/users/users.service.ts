@@ -17,6 +17,6 @@ export class UsersService {
       headers: new HttpHeaders({
         'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
       })
-    }).toPromise()
+    }).toPromise();
   }
 }

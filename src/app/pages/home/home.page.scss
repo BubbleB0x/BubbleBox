@@ -82,6 +82,14 @@ path {
   }
 }
 
+.secondary {
+  animation: pulse 1s infinite linear;
+  stroke: var(--ion-color-secondary);
+  &:nth-child(1) {
+    stroke: var(--ion-color-secondary);
+  }
+}
+
 @keyframes pulse {
   0% {
     stroke-dashoffset: 1130;
