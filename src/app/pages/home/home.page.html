@@ -1,24 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button [color]="color[hsIndex]"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-chip color="primary" size="large" class="pulse">
+      <ion-spinner (click)="refreshState()" name="dots" *ngIf="hsIndex == 5" color="primary" style="margin-right: 15px;"></ion-spinner>
+      <ion-chip [color]="color[hsIndex]" size="large" (click)="refreshState()" *ngIf="hsIndex != 5">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" viewBox="0 0 100 300">
-        <path d="
+        <path [ngClass]="color[hsIndex]" d="
                M0,151h34.1c0.2,0,0.4-0.1,0.5-0.3l1.8-5.3c0.2-0.5,0.9-0.4,1,0.1l1.1,5.9c0.1,0.5,0.9,0.5,1,0l6.4-37
         c0.1-0.6,0.9-0.5,1,0l6.7,55c0.1,0.6,0.9,0.6,1,0l3.9-20c0.1-0.5,0.9-0.5,1,0l0.5,2.3c0.1,0.5,0.9,0.5,1,0l2.5-12.7
         c0.1-0.5,0.9-0.5,1,0l1.9,9.3c0,0.2,0.1,0.2,0.1,0l0.3-1.4c0-0.1,0.1-0.1,0.2,0l1.3,3.9c0.1,0.2,0.3,0.3,0.5,0.3H600
                " />
-        <path d="
+        <path [ngClass]="color[hsIndex]" d="
                M0,150h35.1c0.2,0,0.4-0.1,0.5-0.3l1.8-5.3c0.2-0.5,0.9-0.4,1,0.1l1.1,5.9c0.1,0.5,0.9,0.5,1,0l6.4-37
         c0.1-0.6,0.9-0.5,1,0l6.7,55c0.1,0.6,0.9,0.6,1,0l3.9-20c0.1-0.5,0.9-0.5,1,0l0.5,2.3c0.1,0.5,0.9,0.5,1,0l2.5-12.7
-        c0.1-0.5,0.9-0.5,1,0l1.9,9.3c0,0.2,0.1,0.2,0.1,0l0.3-1.4c0-0.1,0.1-0.1,0.2,0l1.3,3.9c0.1,0.2,0.3,0.3,0.5,0.3H600" />
-      
+        c0.1-0.5,0.9-0.5,1,0l1.9,9.3c0,0.2,0.1,0.2,0.1,0l0.3-1.4c0-0.1,0.1-0.1,0.2,0l1.3,3.9c0.1,0.2,0.3,0.3,0.5,0.3H600" />    
       </svg>
-        <ion-label size="large" >Sound</ion-label>
+        <ion-label>{{healtState[hsIndex]}}</ion-label>
       </ion-chip>
     </ion-buttons>
   </ion-toolbar>

@@ -3,11 +3,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
-import { async } from '@angular/core/testing';
 import { ToastController } from '@ionic/angular';
 import { AccessToken } from '../../interfaces/apiKey/access_token';
 import { stringify } from 'querystring';
 const { Storage } = Plugins;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,6 +15,7 @@ const { Storage } = Plugins;
 })
 export class LoginPage implements OnInit {
   err;
+  
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
