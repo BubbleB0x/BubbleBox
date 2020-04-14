@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -25,17 +25,20 @@ export class RegPage implements OnInit {
   val: string='';
   error:string='';
   registrationComplete:boolean=false;
-
-
+  pwdPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$";
+  unamePattern = "^[a-z0-9_-]{6,15}$";
+  fiscal = "^([A-Za-z]{6}[0-9lmnpqrstuvLMNPQRSTUV]{2}[abcdehlmprstABCDEHLMPRST]{1}[0-9lmnpqrstuvLMNPQRSTUV]{2}[A-Za-z]{1}[0-9lmnpqrstuvLMNPQRSTUV]{3}[A-Za-z]{1})$|([0-9]{11})$";
+  date="^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}[+-][0-9]{2}:[0-9]{2}";
+  
   regForm = this.fb.group({
-    name: ['', Validators.required],
-    surname: ['', Validators.required],
-     fiscal_code: ['', Validators.required],
+    name: ['', Validators.compose([Validators.maxLength(15), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+    surname: ['', Validators.compose([Validators.maxLength(15), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+     fiscal_code: ['', Validators.compose([Validators.pattern(this.fiscal),Validators.required])],
    gender: ['', Validators.required],
-    username: ['', Validators.required], 
-    email:['', Validators.required],
-    password: ['', Validators.required],
-    date:['', Validators.required],
+    username: ['', Validators.compose([Validators.maxLength(15), Validators.pattern(this.unamePattern), Validators.required])], 
+    email:['', Validators.compose([Validators.email,Validators.required])],
+    password: [ '', Validators.compose([Validators.pattern(this.pwdPattern),Validators.required])],
+    date:['', Validators.compose([Validators.pattern(this.date),Validators.required])],
     
    
     
@@ -43,6 +46,8 @@ export class RegPage implements OnInit {
   
   constructor(private authService: AuthService, private fb: FormBuilder, private toastController: ToastController, private router: Router) { 
     
+    
+
   }
 
   ngOnInit() {
@@ -86,7 +91,7 @@ saveReg(){
     this.val='';
   
   } else {
-    
+    console.log(this.regForm.value.password);
     this.authService.reg(this.regForm.value).subscribe((data)=>{
      console.log("Thank you for registration!");
 
@@ -131,7 +136,7 @@ async RegValidateToast(reason) {
     buttons: [
       {
         text: 'Done',
-        role: 'login',
+        role: 'registration',
         handler: () => {
           console.log('Done clicked');
         }
