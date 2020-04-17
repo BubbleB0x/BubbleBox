@@ -4,20 +4,23 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { DevicePageRoutingModule } from './device-routing.module';
 
-import { HomePage } from './home.page';
+import { DevicePage } from './device.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { QrDashComponent } from 'src/app/components/device/qr-dash/qr-dash.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    DevicePageRoutingModule,
     SharedModule
   ],
   declarations: [
-    HomePage]
+    DevicePage,
+    QrDashComponent
+  ]
 })
-export class HomePageModule {}
+export class DevicePageModule {}
