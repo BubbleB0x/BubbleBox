@@ -19,4 +19,12 @@ export class UsersService {
       })
     }).toPromise();
   }
+
+  async syncDevice(mac) {
+    return this.http.post(environment.apiUrlLocal + '/users/sync', { "device": btoa(mac) }, {
+      headers: new HttpHeaders({
+        'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
+      })
+    }).toPromise();
+  }
 }
