@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'device',
-    loadChildren: () => import('./pages/device/device.module').then( m => m.DevicePageModule)
+    loadChildren: () => import('./pages/device/device.module').then( m => m.DevicePageModule),
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,9 +1,76 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>device</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-toolbar></app-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
 
+  <div id="container">
+    <ion-slides pager="false" [options]="slideOpts" #slides>
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>First Step</ion-card-subtitle>
+            <ion-card-title>Sync your Device</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="watch-outline" style="zoom:10.0; margin-bottom: 2px; margin-top: 2px;" color="primary">
+            </ion-icon>
+            <ion-text style="text-align: center;">
+              <p>
+                First of all, synchronize your BB-Device
+              </p>
+            </ion-text>
+            <ion-button expand="block" style="margin-top: 40px;" (click)="slides.slideNext()">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Second Step</ion-card-subtitle>
+            <ion-card-title>Take QrCode</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="qr-code" style="zoom:10.0; margin-bottom: 2px; margin-top: 2px;" color="warning">
+            </ion-icon>
+            <ion-text style="text-align: center;">
+              <p>
+                Then take the QrCode in the device box. Alternatively, view the image on the device display
+              </p>
+            </ion-text>
+            <ion-button expand="block" style="margin-top: 40px;" (click)="slides.slideNext()" color="warning">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Last Step</ion-card-subtitle>
+            <ion-card-title>Scan QrCode</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="scan" style="zoom:10.0; margin-bottom: 2px; margin-top: 2px;" color="danger">
+            </ion-icon>
+            <ion-text style="text-align: center;">
+              <p>
+                Then take the QrCode in the device box. Alternatively, view the image on the device display
+              </p>
+            </ion-text>
+            <ion-button expand="block" style="margin-top: 40px;" color="danger" (click)="scanCode()">
+              Scan
+              <ion-icon slot="end" name="scan"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
