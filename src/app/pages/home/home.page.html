@@ -1,10 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-menu-button [color]="color[hsIndex]"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-spinner (click)="refreshState()" name="dots" *ngIf="hsIndex == 5" color="primary" style="margin-right: 15px;"></ion-spinner>
+      <img  id="tool" src="assets/logos/BubbleBox-logo/vector/isolated-monochrome-white_contorno.png" width="50">
       <ion-chip [color]="color[hsIndex]" size="large" (click)="refreshState()" *ngIf="hsIndex != 5">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" viewBox="0 0 100 300">
@@ -20,36 +21,97 @@
       </svg>
         <ion-label>{{healtState[hsIndex]}}</ion-label>
       </ion-chip>
+      
+      
+      
     </ion-buttons>
+    
+    
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-  </ion-header>
 
-  <div id="container">
-    <ion-grid>
-      <ion-row class="ion-align-items-center">
-        <ion-col>
-          ion-col
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-align-items-center">
-        <ion-col>
-          ion-col
-        </ion-col>
-        <ion-col size="8">
-        </ion-col>
-        <ion-col>
-          ion-col
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-align-items-center">
-        <ion-col>
-          ion-col
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+<ion-content >
+ 
+      
+   
+
+  <ion-card>
+   
+    
+    <ion-card-header>
+      <img src="./assets/coronas.png"/>
+      <ion-card-subtitle>
+        CONTACTS</ion-card-subtitle>
+      <ion-card-title>NUMBER OF CONTACTS</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Contacts had in the last 14 days
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    
+  
+    <ion-item href="/reporting" color="warning">
+      <ion-icon name="thermometer-outline" slot="start"></ion-icon>
+      <ion-title>
+        Report Symptoms</ion-title>
+        <ion-icon name="alert-outline"></ion-icon>
+    </ion-item>
+  
+    
+  
+   
+  </ion-card>
+
+
+
+  
+    <ion-row>
+      <ion-col>
+        <ion-card id="cardd">
+          <img src="./assets/clean_hands.png"/>
+        </ion-card>
+        
+      </ion-col>
+      <ion-col>
+        <ion-card id="cardd">
+          <ion-row>
+          <ion-col> <img src="./assets/avoid_close_contact.png"/></ion-col>
+          <ion-col>
+            
+           <ion-title> Avoid close contact</ion-title>
+
+
+          </ion-col>
+        </ion-row>
+     
+      
+      </ion-card>
+      </ion-col>
+      
+      
+      
+    </ion-row> 
+
+    <ion-row>
+      <ion-col>
+        <ion-card id="cardd">
+          <img src="./assets/clean_disinfect.png"/>
+    </ion-card>
+   
+    
+    </ion-col>
+      
+      <ion-col>
+        <ion-card id="cardd">
+          <img src="./assets/cover_cough.png"/>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  
 </ion-content>

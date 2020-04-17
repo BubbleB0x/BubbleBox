@@ -21,6 +21,7 @@ export class AuthService {
     })
   }
 
+  
   async logout() {
     await Storage.clear().then(res => {
       this.router.navigate(['/login']);
@@ -29,4 +30,9 @@ export class AuthService {
     });
     
   }
+reg(data){
+//console.log(data);
+  return this.http.post(environment.apiUrlLocal+"/reg", data);
+}
+
 }
