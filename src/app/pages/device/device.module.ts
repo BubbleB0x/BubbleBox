@@ -8,7 +8,6 @@ import { DevicePageRoutingModule } from './device-routing.module';
 
 import { DevicePage } from './device.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
-import { QrDashComponent } from 'src/app/components/device/qr-dash/qr-dash.component';
 
 @NgModule({
   imports: [
@@ -19,8 +18,7 @@ import { QrDashComponent } from 'src/app/components/device/qr-dash/qr-dash.compo
     SharedModule
   ],
   declarations: [
-    DevicePage,
-    QrDashComponent
+    DevicePage
   ]
 })
 export class DevicePageModule {}
