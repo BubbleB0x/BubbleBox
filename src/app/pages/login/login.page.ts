@@ -15,7 +15,7 @@ const { Storage } = Plugins;
 })
 export class LoginPage implements OnInit {
   err;
-  
+
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
    */
   login() {
 
-    if(this.isEmptyOrSpaces(this.loginForm.value.username) || this.isEmptyOrSpaces(this.loginForm.value.password)) {
+    if (this.isEmptyOrSpaces(this.loginForm.value.username) || this.isEmptyOrSpaces(this.loginForm.value.password)) {
       this.LoginErrorToast("Please enter Username and Password");
     } else {
       this.authService.login(this.loginForm.value).subscribe(
@@ -43,7 +43,10 @@ export class LoginPage implements OnInit {
             key: 'access_token',
             value: result.access_token
           });
-  
+
+          //Setto l'access_token nell'authService
+          this.authService.setAccessToken(result.access_token)
+
           // Faccio la pulizia dei campi della form di login
           this.loginForm.reset();
 
@@ -58,9 +61,9 @@ export class LoginPage implements OnInit {
     }
   }
 
-  isEmptyOrSpaces(str){
+  isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
-}
+  }
 
   async LoginErrorToast(reason) {
     const toast = await this.toastController.create({

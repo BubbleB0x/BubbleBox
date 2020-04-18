@@ -7,7 +7,7 @@
   </ion-header>
 
   <div id="container">
-    <ion-slides pager="false" [options]="slideOpts" #slides>
+    <ion-slides *ngIf="showSync" pager="false" [options]="slideOpts" #slides>
       <ion-slide>
         <ion-card>
           <ion-card-header>
