@@ -1,56 +1,57 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <div align="center">
-      <img src="assets/logos/BubbleBox-logo/vector/isolated-monochrome-white.svg" class="bb" width="50">
-    </div>
-  </ion-toolbar>
+  <app-toolbar></app-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle style="text-align: center;">Safe & Sound</ion-card-subtitle>
-      <ion-card-title style="text-align: center;">BubbleBox</ion-card-title>
-    </ion-card-header>
-    <ion-card-content style="position: relative; bottom: 20;">
-    <ion-toolbar>
-      <ion-title style="text-align: center;">Reporting Symptoms</ion-title>
-    </ion-toolbar>
- 
-
-   
-    <ion-list>
-      <ion-item *ngFor="let entry of sym">
-        <ion-label>{{entry.val}}</ion-label>
-        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+      <ion-item>
+        <ion-card-title>
+          Reporting Symptoms
+        </ion-card-title>
+        <ion-icon name="document-text-outline" style="text-align: center; zoom: 1.5; margin-left: 5px;" color="primary">
+        </ion-icon>
       </ion-item>
-    </ion-list>
-   <br>
-   <ion-button outline item-start
-        href="home"
-        
-     
-      >
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let entry of sym">
+          <ion-label>{{entry.val}}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+        </ion-item>
+        <div align="center" style="position: relative; top:20px; z-index: 99;">
+          <ion-text style="display: block;" color="danger">Body Temperature</ion-text>
+          <br>
+          <ion-badge color="danger" style="text-align: center;">{{bodyTemp}}°</ion-badge>
+        </div>
+        <ion-item>
+          <ion-range min="36" max="41" step="0.5" value="36" snaps color="danger" [(ngModel)]="bodyTemp">
+            <ion-icon slot="start" size="small" color="danger" name="thermometer"></ion-icon>
+            <ion-icon slot="end" color="danger" name="thermometer"></ion-icon>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Notes</ion-label>
+          <ion-textarea rows="3" cols="10"></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <br>
+      <ion-button (click)="saveReporting()" expand="block" color="success" fill="outline">
+        Send Report
+        <ion-icon slot="end" name="send-outline"></ion-icon>
+      </ion-button>
+      <hr>
+      <ion-button routerLink="/home" routerLinkActive="active" expand="block" fill="outline" color="danger">
         Cancel
-      </ion-button>
-    
-      <ion-button outline item-start
-     
-
-        (click)="saveReporting()"
-
-        
-       
-      >
-        Save
+        <ion-icon slot="end" name="log-in-outline"></ion-icon>
       </ion-button>
       <br>
       <br>
-      <ion-text>   
-        We also advise you to contact <b>112</b> or <b>1500</b> to communicate to a healthcare professional and not to go to the hospital or pharmacy.
-         </ion-text>
- </ion-card-content>
+      <ion-text>
+        We also advise you to contact <b>112</b> or <b>1500</b> to communicate to a healthcare professional and not to
+        go to the hospital or pharmacy.
+      </ion-text>
+    </ion-card-content>
   </ion-card>
-   
-  
+
+
 </ion-content>

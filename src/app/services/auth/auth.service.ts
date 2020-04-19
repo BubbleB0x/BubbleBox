@@ -11,27 +11,45 @@ const { Storage } = Plugins;
 })
 export class AuthService {
 
+  // Variabile contente l'access_token una volta effettuato l'accesso
   private access_token = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  /**
+   * Metodo set per l'access_token
+   * 
+   * @param access_token parametro contente l'access_token
+   */
   setAccessToken(access_token) {
     this.access_token = access_token;
   }
 
+  /**
+   * Metodo get per l'access_token
+   */
   getAccessToken() {
     return this.access_token;
   }
 
+  /**
+   * Metodo per effettuare il login
+   * 
+   * @param cred array contente password e username
+   */
   login(cred) {
     return this.http.post(environment.apiUrlLocal + '/login', {}, {
+      //Headers
       headers: new HttpHeaders({
+        // Aggiungo la basicAuth codificanto in base64 username:password 
         'Authorization': 'Basic ' + btoa(cred.username + ':' + cred.password)
       })
     })
   }
 
-
+  /**
+   * Metodo per eseguire il logout dall'app
+   */
   async logout() {
     await Storage.clear().then(() => {
       this.router.navigate(['/login']);
@@ -41,8 +59,12 @@ export class AuthService {
     });
   }
 
+  /**
+   * Metodo per la registrazione all'app
+   * 
+   * @param data parametro contente tutte le generalità dell'utente
+   */
   reg(data) {
-    //console.log(data);
     return this.http.post(environment.apiUrlLocal + "/reg", data);
   }
 

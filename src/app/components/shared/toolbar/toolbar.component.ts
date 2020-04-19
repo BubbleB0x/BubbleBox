@@ -39,7 +39,6 @@ export class ToolbarComponent implements OnInit {
        * 
        */
       (result) => {
-        console.log(result["hs"])
         switch (result["hs"]) {
           case "H": this.hsIndex = 0; break;
           case "S": this.hsIndex = 1; break;
