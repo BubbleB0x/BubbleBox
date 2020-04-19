@@ -2,9 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
-import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
+
+// Capacitor Plugins
+import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
+
+// JWT Token decoder
+import * as jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +35,13 @@ export class AuthService {
    */
   getAccessToken() {
     return this.access_token;
+  }
+
+  /**
+   *  Metodo per ottnere le informazioni contenute nell'access token
+   */
+  getAccessTokenDecode() {
+    return jwtDecode(this.access_token);
   }
 
   /**

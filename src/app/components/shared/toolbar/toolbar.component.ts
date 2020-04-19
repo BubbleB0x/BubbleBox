@@ -30,7 +30,6 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.refreshState()
-    setInterval(() => { this.refreshState() }, 600000);
   }
 
   refreshState() {

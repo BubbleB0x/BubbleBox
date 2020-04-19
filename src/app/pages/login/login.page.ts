@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, MenuController } from '@ionic/angular';
 import { AccessToken } from '../../interfaces/apiKey/access_token';
 import { stringify } from 'querystring';
 const { Storage } = Plugins;
@@ -21,7 +21,14 @@ export class LoginPage implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, public toastController: ToastController) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private toastController: ToastController,
+    private menuController: MenuController
+  ) {
+    this.menuController.enable(false);
   }
 
   ngOnInit() {
@@ -31,7 +38,6 @@ export class LoginPage implements OnInit {
    * Esecuzione login, recuperando le credenziali dalla loginForm
    */
   login() {
-
     if (this.isEmptyOrSpaces(this.loginForm.value.username) || this.isEmptyOrSpaces(this.loginForm.value.password)) {
       this.LoginErrorToast("Please enter Username and Password");
     } else {
@@ -50,11 +56,13 @@ export class LoginPage implements OnInit {
           // Faccio la pulizia dei campi della form di login
           this.loginForm.reset();
 
+          //Abilito il menu
+          this.menuController.enable(true);
+
           // Reindirizzo alla home
           this.router.navigate(['/home']);
         }, (error) => {
           this.err = stringify(error)
-
           this.LoginErrorToast(error.error.error);
         }
       );
