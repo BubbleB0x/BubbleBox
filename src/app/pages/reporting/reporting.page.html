@@ -24,6 +24,10 @@
         <ion-label>{{entry.val}}</ion-label>
         <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
       </ion-item>
+      <ion-item>
+      <ion-label>Your notes: </ion-label>
+      <ion-input type="text" placeholder="Enter notes" (keyup)="insertNote($event)"></ion-input>
+    </ion-item>
     </ion-list>
    <br>
    <ion-button outline item-start

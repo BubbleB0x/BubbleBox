@@ -23,6 +23,7 @@ export class AuthService {
 
   
   async logout() {
+   
     await Storage.clear().then(res => {
       this.router.navigate(['/login']);
     }, err => {
