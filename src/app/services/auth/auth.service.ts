@@ -96,12 +96,7 @@ export class AuthService {
    * Metodo per eseguire il logout dall'app
    */
   async logout() {
-<<<<<<< HEAD
-    await Storage.clear().then(() => {
-=======
-   
     await Storage.clear().then(res => {
->>>>>>> adeb5eeb81433be603c76e6878088441ed1cafa1
       this.router.navigate(['/login']);
       this.access_token = null;
     }, err => {
