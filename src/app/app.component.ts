@@ -11,13 +11,11 @@ import { AuthService } from './services/auth/auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  listIndex = null;
   
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private authService: AuthService
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
@@ -30,9 +28,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  selectItem(index) {
-    this.listIndex = index;
   }
 }

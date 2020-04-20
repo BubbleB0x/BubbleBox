@@ -13,11 +13,13 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) { }
 
   async canActivate() {
-    const reqKey = await Storage.get({ key: 'access_token' });
+    const reqKey = await this.authService.getStoreAccessToken()
     if (reqKey.value === null) {
       this.router.navigate(['/login'])
     } else {
-      this.authService.setAccessToken(reqKey.value);
+      if(this.authService.getAccessToken() === null) {
+        this.authService.setAccessToken(reqKey.value);
+      }
     }
     return true;
   }

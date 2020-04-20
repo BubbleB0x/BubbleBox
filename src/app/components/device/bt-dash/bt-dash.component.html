@@ -1,3 +1,11 @@
-<p>
-  bt-dash works!
-</p>
+<ion-list>
+  <ion-card-content ion-item *ngFor="let device of devices">
+    <p>{{device.name}}</p>
+    <p>{{device.id}}</p>
+    <p> RSSI: {{device.rssi}}</p>
+  </ion-card-content>
+</ion-list>
+<ion-button (click)="startScan()" slot="end">
+  <ion-icon name="Bluetooth"></ion-icon>
+  <p>Scan</p>
+</ion-button>

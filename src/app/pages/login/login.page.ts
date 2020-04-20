@@ -3,8 +3,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { AccessToken } from '../../interfaces/apiKey/access_token';
+import { ToastController, MenuController } from '@ionic/angular';
+import { AccessToken } from '../../interfaces/access_token';
 import { stringify } from 'querystring';
 const { Storage } = Plugins;
 
@@ -21,7 +21,14 @@ export class LoginPage implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, public toastController: ToastController) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private toastController: ToastController,
+    private menuController: MenuController
+  ) {
+    this.menuController.enable(false);
   }
 
   ngOnInit() {
@@ -31,30 +38,28 @@ export class LoginPage implements OnInit {
    * Esecuzione login, recuperando le credenziali dalla loginForm
    */
   login() {
-
     if (this.isEmptyOrSpaces(this.loginForm.value.username) || this.isEmptyOrSpaces(this.loginForm.value.password)) {
       this.LoginErrorToast("Please enter Username and Password");
     } else {
       this.authService.login(this.loginForm.value).subscribe(
-        async (result: AccessToken) => {
+        (result: AccessToken) => {
 
           // Memorizzo l'access token nello store per la persistenza
-          await Storage.set({
-            key: 'access_token',
-            value: result.access_token
-          });
+          this.authService.setStoreAccessToken(result.access_token);
 
           //Setto l'access_token nell'authService
-          this.authService.setAccessToken(result.access_token)
+          this.authService.setAccessToken(result.access_token);
 
           // Faccio la pulizia dei campi della form di login
           this.loginForm.reset();
+
+          //Abilito il menu
+          this.menuController.enable(true);
 
           // Reindirizzo alla home
           this.router.navigate(['/home']);
         }, (error) => {
           this.err = stringify(error)
-
           this.LoginErrorToast(error.error.error);
         }
       );

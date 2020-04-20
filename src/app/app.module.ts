@@ -11,6 +11,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
+import { BLE } from '@ionic-native/ble/ngx';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,13 +25,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    
+    SharedModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     BarcodeScanner,
     HttpClientModule,
+    BluetoothSerial,
+    BluetoothLE,
+    BLE,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-// Servizi
-import { UsersService } from 'src/app/services/users/users.service';
+// Services
 import { AuthService } from 'src/app/services/auth/auth.service';
-
-// Capacitor Plugins
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
-
-// JWT Token decoder
-import * as jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-device',
@@ -27,9 +19,7 @@ export class DevicePage implements OnInit {
   // Variabile per la visualizzazione dello slider adibito alla sincronizzazione utente -> Device
   showSync = true;
 
-  constructor(private authService: AuthService) {
-
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     //Controllo per la visualizzazione dello slider
@@ -40,11 +30,8 @@ export class DevicePage implements OnInit {
    *  Metodo per la visualizzazione dello slider per la sync
    */
   async showSlider() {
-    // Ottengo l'access token dall'auth service
-    const access_token = this.authService.getAccessToken();
     // ricavo il device contenuto nel token 
-    const device = jwtDecode(access_token).user.device
-    console.log(device)
+    const device = this.authService.getAccessTokenDecode().user.device
     // se l'utente non ha associato alcun device allora lo slider permane altrimenti scompare
     if (device == null) {
       this.showSync = true;

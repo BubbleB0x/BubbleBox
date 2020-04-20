@@ -8,5 +8,6 @@
 
   <div id="container">
     <app-qr-dash *ngIf="showSync" (closeSlider)="showSync = false"></app-qr-dash>
+    <app-bt-dash *ngIf="!showSync"></app-bt-dash>
   </div>
 </ion-content>

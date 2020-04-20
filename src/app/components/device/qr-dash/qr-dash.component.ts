@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 // Ionic Barcode Plugin
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
@@ -7,7 +7,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from '@ionic/angular';
 
 // Interfaces
-import { AccessToken } from 'src/app/interfaces/apiKey/access_token';
+import { AccessToken } from 'src/app/interfaces/access_token';
 
 // Services
 import { UsersService } from 'src/app/services/users/users.service';
@@ -27,12 +27,12 @@ export class QrDashComponent implements OnInit {
   @Output() closeSlider = new EventEmitter();
 
   constructor(
-    private barcodeScanner: BarcodeScanner, 
-    private usersService: UsersService, 
+    private barcodeScanner: BarcodeScanner,
+    private usersService: UsersService,
     public toastController: ToastController,
     private authService: AuthService) {
 
-    }
+  }
 
   ngOnInit() { }
 
@@ -60,10 +60,7 @@ export class QrDashComponent implements OnInit {
          */
           async (result: AccessToken) => {
             // Memorizzo l'access token nello store per la persistenza
-            await Storage.set({
-              key: 'access_token',
-              value: result.access_token
-            }).then(
+            await this.authService.setStoreAccessToken(result.access_token).then(
               /**
                * Operazioni che avvengono se l'inserimento dell'access_token nello storage avviene con successo
                */
