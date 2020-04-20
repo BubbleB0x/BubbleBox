@@ -41,4 +41,24 @@ export class UsersService {
       })
     });
   }
+
+  async getId() {
+    
+    return this.http.get(environment.apiUrlLocal + '/users/id', {
+      headers: new HttpHeaders({
+        'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
+      })
+    }).toPromise();
+  }
+
+  async getR() {
+      
+    return this.http.get(environment.apiUrlLocal + '/users/symp', {
+      
+      headers: new HttpHeaders({
+        'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
+      })
+    }).toPromise();
+  }
+
 }

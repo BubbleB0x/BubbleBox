@@ -23,9 +23,15 @@ const routes: Routes = [
   },
   {
     path: 'reporting',
+<<<<<<< HEAD
     loadChildren: () => import('./pages/reporting/reporting.module').then( m => m.ReportingPageModule),
     canActivate: [AuthGuard]
   },
+=======
+    loadChildren: () => import('./pages/reporting/reporting.module').then( m => m.ReportingPageModule)
+  },
+  
+>>>>>>> adeb5eeb81433be603c76e6878088441ed1cafa1
   {
     path: 'device',
     loadChildren: () => import('./pages/device/device.module').then( m => m.DevicePageModule),
