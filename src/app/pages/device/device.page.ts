@@ -32,7 +32,6 @@ export class DevicePage implements OnInit {
   async showSlider() {
     // ricavo il device contenuto nel token 
     const device = this.authService.getAccessTokenDecode().user.device
-    console.log(device)
     // se l'utente non ha associato alcun device allora lo slider permane altrimenti scompare
     if (device == null) {
       this.showSync = true;

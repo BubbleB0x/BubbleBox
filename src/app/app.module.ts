@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { BluetoothLE } from '@ionic-native/bluetooth-le/ngx';
 import { BLE } from '@ionic-native/ble/ngx';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,7 @@ import { BLE } from '@ionic-native/ble/ngx';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    
+    SharedModule
   ],
   providers: [
     StatusBar,

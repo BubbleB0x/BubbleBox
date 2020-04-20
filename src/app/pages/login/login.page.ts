@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { ToastController, MenuController } from '@ionic/angular';
-import { AccessToken } from '../../interfaces/apiKey/access_token';
+import { AccessToken } from '../../interfaces/access_token';
 import { stringify } from 'querystring';
 const { Storage } = Plugins;
 
@@ -42,16 +42,13 @@ export class LoginPage implements OnInit {
       this.LoginErrorToast("Please enter Username and Password");
     } else {
       this.authService.login(this.loginForm.value).subscribe(
-        async (result: AccessToken) => {
+        (result: AccessToken) => {
 
           // Memorizzo l'access token nello store per la persistenza
-          await Storage.set({
-            key: 'access_token',
-            value: result.access_token
-          });
+          this.authService.setStoreAccessToken(result.access_token);
 
           //Setto l'access_token nell'authService
-          this.authService.setAccessToken(result.access_token)
+          this.authService.setAccessToken(result.access_token);
 
           // Faccio la pulizia dei campi della form di login
           this.loginForm.reset();

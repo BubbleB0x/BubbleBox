@@ -10,6 +10,7 @@ const { Storage } = Plugins;
 
 // JWT Token decoder
 import * as jwtDecode from 'jwt-decode';
+import { User } from 'src/app/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class AuthService {
   // Variabile contente l'access_token una volta effettuato l'accesso
   private access_token = null;
 
+  // Utente Autenticato
+  authUser: User;
+
   constructor(private http: HttpClient, private router: Router) { }
 
   /**
@@ -26,8 +30,9 @@ export class AuthService {
    * 
    * @param access_token parametro contente l'access_token
    */
-  setAccessToken(access_token) {
+  setAccessToken(access_token: string) {
     this.access_token = access_token;
+    this.setAuthUser();
   }
 
   /**
@@ -43,6 +48,34 @@ export class AuthService {
   getAccessTokenDecode() {
     return jwtDecode(this.access_token);
   }
+
+  /**
+   *  Metodo per inserire l'access token nello store
+   * 
+   * @param access_token access token
+   */
+  async setStoreAccessToken(access_token: string) {
+    // Memorizzo l'access token nello store per la persistenza
+    await Storage.set({
+      key: 'access_token',
+      value: access_token
+    });
+  }
+
+  /**
+   * Metodo per ottenere il token dallo store
+   */
+  async getStoreAccessToken() {
+    return await Storage.get({ key: 'access_token' });
+  }
+
+  /**
+   * Metodo per settare l'utente autenticato
+   */
+   setAuthUser() {
+     this.authUser = jwtDecode(this.access_token).user;
+     console.log(this.authUser);
+   }
 
   /**
    * Metodo per effettuare il login
