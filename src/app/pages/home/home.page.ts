@@ -9,28 +9,9 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class HomePage implements OnInit {
 
-reported:any;
-  constructor(private userService: UsersService) {
-   
-    
- 
-  }
+  constructor(private userService: UsersService) { }
 
-  ngOnInit() {
-    
-    
-   
-  }
-  ionViewDidEnter(){
-    this.getR();
-  }
- 
-
-   async getR() {
-    const result = await this.userService.getR();
-    console.log("result     ",result);
-    this.reported=result;
-  }
- 
+  ngOnInit() { }
+  
 }
 

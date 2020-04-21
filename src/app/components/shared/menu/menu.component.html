@@ -18,7 +18,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <ion-list id="inbox-list" *ngIf="authService.authUser.role == 'staff' || authService.authUser.role == 'admin'">
+        <ion-list id="inbox-list">
           <ion-list-header *ngIf="authService.authUser != undefined">Staff</ion-list-header>
           <ion-menu-toggle auto-hide="false" (mouseleave)="selectItem(null)">
             <ion-item (mouseenter)="selectItem(2)" routerDirection="root" lines="none" detail="false"
@@ -28,7 +28,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <ion-list id="inbox-list" *ngIf="authService.authUser.role == 'admin'">
+        <ion-list id="inbox-list">
           <ion-list-header *ngIf="authService.authUser != undefined">Admin</ion-list-header>
           <ion-menu-toggle auto-hide="false" (mouseleave)="selectItem(null)">
             <ion-item (mouseenter)="selectItem(3)" routerDirection="root" lines="none" detail="false"

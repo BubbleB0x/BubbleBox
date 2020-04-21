@@ -22,26 +22,12 @@
       Contacts had in the last 14 days
     </ion-card-content>
   </ion-card>
-
-  <ion-card>
-
-    <div *ngIf="!reported">
-      <ion-item routerLink="/reporting" routerLinkActive="active" color="warning">
-        <ion-icon name="thermometer-outline" slot="start"></ion-icon>
-        <ion-title id="tool">
-          Report Symptoms</ion-title>
-        <ion-icon name="alert-outline" slot="end"></ion-icon>
-      </ion-item>
-    </div>
-
-
-
-
-  </ion-card>
-
-
-
-
+  <div *ngIf="!reported">
+    <ion-button routerLink="/reporting" routerLinkActive="active" color="warning" expand="block">
+      <ion-icon name="thermometer-outline" slot="start"></ion-icon>
+      Report Symptoms
+    </ion-button>
+  </div>
   <ion-row>
     <ion-col>
       <ion-card id="cardd">

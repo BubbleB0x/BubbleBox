@@ -31,34 +31,34 @@ export class UsersService {
   syncDevice(mac) {
     return this.http.post(
       environment.apiUrlLocal + '/users/sync', {
-        //Body
-        "device": btoa(mac)
-      }, {
-        //Headers
-        headers: new HttpHeaders({
+      //Body
+      "device": btoa(mac)
+    }, {
+      //Headers
+      headers: new HttpHeaders({
         // Add Baerer Token
         'Authorization': 'Baerer ' + this.authService.getAccessToken()
       })
     });
   }
 
-  async getId() {
-    
-    return this.http.get(environment.apiUrlLocal + '/users/id', {
+  /**
+   * Metodo per l'invio di una nuova segnalazione da parte di un utente
+   *
+   * @param report parametro contente i sintomi dell'utente
+   */
+  sendReport(report) {
+    console.log('ok sono qui')
+    return this.http.post(
+      environment.apiUrlLocal + '/users/reporting', {
+      // Body
+      "report": report
+    }, {
       headers: new HttpHeaders({
-        'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
+        // Add Baerer Token
+        'Authorization': 'Baerer ' + this.authService.getAccessToken()
       })
-    }).toPromise();
+    });
   }
-
-  async getR() {
-      
-    return this.http.get(environment.apiUrlLocal + '/users/symp', {
-      
-      headers: new HttpHeaders({
-        'Authorization': 'Baerer ' + (await Storage.get({ key: 'access_token' })).value
-      })
-    }).toPromise();
-  }
-
 }
+

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { ToastController, MenuController } from '@ionic/angular';
 import { AccessToken } from '../../interfaces/access_token';
-import { stringify } from 'querystring';
-const { Storage } = Plugins;
 
 @Component({
   selector: 'app-login',
@@ -14,7 +11,6 @@ const { Storage } = Plugins;
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  err;
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -59,7 +55,6 @@ export class LoginPage implements OnInit {
           // Reindirizzo alla home
           this.router.navigate(['/home']);
         }, (error) => {
-          this.err = stringify(error)
           this.LoginErrorToast(error.error.error);
         }
       );

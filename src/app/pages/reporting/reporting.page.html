@@ -6,44 +6,106 @@
     <ion-card-header>
       <ion-item>
         <ion-card-title>
-          Reporting Symptoms
+          Reporting
         </ion-card-title>
-        <ion-icon name="document-text-outline" style="text-align: center; zoom: 1.5; margin-left: 5px;" color="primary">
+        <ion-icon name="document-text-outline" style="text-align: center; zoom: 1.5; margin-left: 5px;">
         </ion-icon>
       </ion-item>
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let entry of sym">
-          <ion-label>{{entry.val}}</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
-        </ion-item>
-        <div align="center" style="position: relative; top:20px; z-index: 99;">
-          <ion-text style="display: block;" color="danger">Body Temperature</ion-text>
-          <br>
-          <ion-badge color="danger" style="text-align: center;">{{bodyTemp}}°</ion-badge>
-        </div>
-        <ion-item>
-          <ion-range min="36" max="41" step="0.5" value="36" snaps color="danger" [(ngModel)]="bodyTemp">
-            <ion-icon slot="start" size="small" color="danger" name="thermometer"></ion-icon>
-            <ion-icon slot="end" color="danger" name="thermometer"></ion-icon>
-          </ion-range>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Notes</ion-label>
-          <ion-textarea rows="3" cols="10" (keyup)="insertNote($event)" type="text"></ion-textarea>
-        </ion-item>
-      </ion-list>
-      <br>
-      <ion-button (click)="saveReporting()" expand="block" color="success" fill="outline">
-        Send Report
-        <ion-icon slot="end" name="send-outline"></ion-icon>
-      </ion-button>
-      <hr>
-      <ion-button routerLink="/home" routerLinkActive="active" expand="block" fill="outline" color="danger">
-        Cancel
-        <ion-icon slot="end" name="log-in-outline"></ion-icon>
-      </ion-button>
+      <form [formGroup]="reportForm" (submit)="saveReporting()">
+        <ion-list>
+          <ion-item-divider color="warning">
+            <ion-label>
+              Symptoms
+            </ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label>Cough</ion-label>
+            <ion-toggle formControlName="cough" color="warning"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Sore Throath</ion-label>
+            <ion-toggle formControlName="soreThroath" color="warning"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label >Runny Nose</ion-label>
+            <ion-toggle formControlName="runnyNose" color="warning"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Breathing Difficulties</ion-label>
+            <ion-toggle formControlName="breathDiff" color="warning"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Fatigue</ion-label>
+            <ion-toggle formControlName="fatigue" color="warning"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Diarrhea</ion-label>
+            <ion-toggle formControlName="diarrhea" color="warning"></ion-toggle>
+          </ion-item>
+
+          <div align="center" style="position: relative; top:20px; z-index: 99;">
+            <ion-text style="display: block;" color="danger">Body Temperature</ion-text>
+            <br>
+            <ion-badge color="danger" style="text-align: center; margin-bottom: 10px;">{{reportForm.value.temp}}°</ion-badge>
+          </div>
+          <ion-item>
+            <ion-range min="36" max="41" step="0.5" value="36" snaps color="danger" formControlName="temp">
+              <ion-icon slot="start" size="small" color="danger" name="thermometer"></ion-icon>
+              <ion-icon slot="end" color="danger" name="thermometer"></ion-icon>
+            </ion-range>
+          </ion-item>
+          <hr>
+          <ion-item-divider color="danger">
+            <ion-label>
+              Existing Diseases
+            </ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-label>Hypertension</ion-label>
+            <ion-toggle formControlName="hypertension" color="danger"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Heart Disease</ion-label>
+            <ion-toggle formControlName="heartDisease" color="danger"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Diabetes</ion-label>
+            <ion-toggle formControlName="diabetes" color="danger"></ion-toggle>
+          </ion-item>
+          <hr>
+          <ion-item-divider color="secondary">
+            <ion-label>
+              Other Info
+            </ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-label position="floating">Notes</ion-label>
+            <ion-textarea rows="5" cols="10" type="text" formControlName="userNotes" color="danger"></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <br>
+        <br>
+        <ion-button type="submit" expand="block" color="success" fill="outline">
+          Send Report
+          <ion-icon slot="end" name="send-outline"></ion-icon>
+        </ion-button>
+        <hr>
+        <ion-button routerLink="/home" routerLinkActive="active" expand="block" fill="outline" color="danger">
+          Cancel
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </form>
       <br>
       <br>
       <ion-text>
