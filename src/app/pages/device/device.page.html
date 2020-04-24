@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <app-toolbar></app-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+
+  <div id="container">
+    <app-qr-dash *ngIf="showSync" (closeSlider)="showSync = false"></app-qr-dash>
+    <app-bt-dash *ngIf="!showSync"></app-bt-dash>
+  </div>
+</ion-content>

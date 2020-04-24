@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <div align="center">
+      <img src="assets/logos/BubbleBox-logo/vector/isolated-monochrome-white.svg" class="bb" width="50">
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle style="text-align: center;">Safe & Sound</ion-card-subtitle>
+      <ion-card-title style="text-align: center;">BubbleBox</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="position: relative; bottom: 20;">
+      <form [formGroup]="regForm">
+        <ion-title style="text-align: center;">
+          New User
+          <ion-icon name="user"></ion-icon>
+        </ion-title>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="person-outline"></ion-icon> Name
+            </ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="person-outline"></ion-icon> Surname
+            </ion-label>
+            <ion-input formControlName="surname" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="barcode-outline"></ion-icon>
+              Fiscal Code
+            </ion-label>
+            <ion-input formControlName="fiscal_code" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="calendar-outline"></ion-icon>
+              Birth Date
+            </ion-label>
+            <ion-datetime formControlName="date" min="1910-01" max={{year}} displayFormat="DD-MMM-YYYY"
+              monthShortNames=" Jan, Feb, Mar, Apr, May, Jun, jul, Aug, Sep, Oct, Nov, Dec">
+            </ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="transgender-outline"></ion-icon> Gender </ion-label>
+            <ion-select formControlName="gender">
+              <ion-select-option value="f">Female</ion-select-option>
+              <ion-select-option value="m">Male</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="person-outline"></ion-icon> Username
+            </ion-label>
+            <ion-input formControlName="username" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="mail-outline"></ion-icon> Email &nbsp;
+            </ion-label>
+            <ion-input formControlName="email" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="key-outline"></ion-icon> Password
+            </ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+          <br>
+          <ion-button outline item-start (click)="saveReg()" expand="block">
+            Sign
+            <ion-icon name="pencil-outline"></ion-icon>
+          </ion-button>
+          <ion-button outline item-start href="login" expand="block">
+            Cancel
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

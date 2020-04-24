@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <app-toolbar></app-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+
+
+  <ion-card>
+
+
+    <ion-card-header>
+      <img src="./assets/coronas.png" />
+      <ion-card-subtitle>
+        CONTACTS</ion-card-subtitle>
+      <ion-card-title id="tool">NUMBER OF CONTACTS</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Contacts had in the last 14 days
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="!reported">
+    <ion-button routerLink="/reporting" routerLinkActive="active" color="warning" expand="block">
+      <ion-icon name="thermometer-outline" slot="start"></ion-icon>
+      Report Symptoms
+    </ion-button>
+  </div>
+  <ion-row>
+    <ion-col>
+      <ion-card id="cardd">
+        <ion-card-title id="tool">Clean Hands!</ion-card-title>
+
+        <img src="./assets/clean_hands_2.png" />
+      </ion-card>
+
+
+    </ion-col>
+    <ion-col>
+
+      <ion-card id="cardd">
+
+        <ion-card-title id="tool">Avoid Contact!</ion-card-title>
+
+        <ion-col> <img src="./assets/avoid_close_contact_2.png" /></ion-col>
+      </ion-card>
+
+    </ion-col>
+
+
+
+  </ion-row>
+  <br>
+  <ion-row>
+    <ion-col>
+      <ion-card id="cardd">
+        <ion-card-title id="tool">Clean Disinfect!</ion-card-title>
+
+        <img src="./assets/clean_disinfect_2.png" />
+      </ion-card>
+
+
+    </ion-col>
+
+    <ion-col>
+      <ion-card id="cardd">
+        <ion-card-title id="tool">Cover Cough!</ion-card-title>
+
+        <img src="./assets/cover_cough_2.png" />
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
