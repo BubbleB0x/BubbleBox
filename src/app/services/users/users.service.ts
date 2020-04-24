@@ -48,7 +48,6 @@ export class UsersService {
    * @param report parametro contente i sintomi dell'utente
    */
   sendReport(report) {
-    console.log('ok sono qui')
     return this.http.post(
       environment.apiUrlLocal + '/users/reporting', {
       // Body
@@ -59,6 +58,20 @@ export class UsersService {
         'Authorization': 'Baerer ' + this.authService.getAccessToken()
       })
     });
+  }
+
+  /**
+   * Metodo per l'invio dei blasts
+   */
+  sendBlasts(blasts: Array<string>) {
+    return this.http.post(environment.apiUrlLocal + '/devices/blast', {
+      "blast": blasts
+    }, {
+      headers: new HttpHeaders({
+        // Add Baerer Token
+        'Authorization': 'Baerer ' + this.authService.getAccessToken()
+      })
+    })
   }
 }
 

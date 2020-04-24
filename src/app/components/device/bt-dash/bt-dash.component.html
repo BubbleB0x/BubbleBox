@@ -5,7 +5,15 @@
     <p> RSSI: {{device.rssi}}</p>
   </ion-card-content>
 </ion-list>
-<ion-button (click)="startScan()" slot="end">
+<ion-button (click)="Scan()" slot="end">
   <ion-icon name="Bluetooth"></ion-icon>
   <p>Scan</p>
+</ion-button>
+<ion-button (click)="connect()" slot="end">
+  <ion-icon name="Bluetooth"></ion-icon>
+  <p>Connect</p>
+</ion-button>
+<ion-button (click)="sendBlasts()" slot="end">
+  <ion-icon name="Bluetooth"></ion-icon>
+  <p>Send</p>
 </ion-button>
